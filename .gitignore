@@ -1,0 +1,14 @@
+# Temporary output directories
+.DS_Store
+.idea/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# vim open files
+**.swp
