@@ -6,6 +6,7 @@ on:
   schedule:
     # Currently scheduled every morning at 2:05am.
     - cron: "5 2 * * *"
+  workflow_dispatch:
 
 jobs:
   identify_all_services:
