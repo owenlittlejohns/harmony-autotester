@@ -51,4 +51,4 @@ jobs:
     steps:
       - name: Placeholder to prove matrix is working
         run: |
-          echo ${{ matrix.service.name }} ${{ matrix.service.concept_id }}
+          echo "${{ matrix.service.name }} ${{ matrix.service.concept_id }}"
