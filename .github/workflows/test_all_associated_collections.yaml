@@ -10,6 +10,7 @@ on:
 jobs:
   identify_all_services:
     runs-on: ubuntu-latest
+    environment: production
     outputs:
       all_services: "${{ steps.find_all_services.outputs.all_services }}"
 
@@ -40,6 +41,7 @@ jobs:
   test_all_services:
     runs_on: ubuntu-latest
     needs: identify_all_services
+    environment: production
     strategy:
       matrix:
         service: ${{ fromJson(needs.identify_all_services.outputs.all_services) }}
