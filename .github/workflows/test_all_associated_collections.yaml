@@ -34,10 +34,10 @@ jobs:
         run: |
           python bin/get_all_services.py
         env:
-          CMR_GRAPHQL_URL=${{ vars.CMR_GRAPHQL_URL }}
-          EDL_URL=${{ vars.EDL_URL }}
-          EDL_USER=${{ secrets.EDL_USER }}
-          EDL_PASSWORD=${{ secrets.EDL_PASSWORD }}
+          CMR_GRAPHQL_URL: ${{ vars.CMR_GRAPHQL_URL }}
+          EDL_URL: ${{ vars.EDL_URL }}
+          EDL_USER: ${{ secrets.EDL_USER }}
+          EDL_PASSWORD: ${{ secrets.EDL_PASSWORD }}
 
   test_all_services:
     runs-on: ubuntu-latest
