@@ -40,7 +40,7 @@ jobs:
           EDL_PASSWORD=${{ secrets.EDL_PASSWORD }}
 
   test_all_services:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     needs: identify_all_services
     environment: production
     strategy:
