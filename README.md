@@ -60,6 +60,47 @@ in the repository, to allow for tracking of any related issues.
 * `pyproject.toml`  is a configuration file used by packaging tools, and other
   tools such as linters and type checkers.
 
+## Adding a new test suite:
+
+Each service chain should have a dedicated subdirectory in the `tests` directory.
+Within that subdirectory, at a minimum, should be:
+
+* `tests_<service_name>.py` - A `pytest` compatible file with tests that will
+  be run for all associated collections.
+* `requrements.txt` - A file with requirements that can be installed via Pip.
+* `__init__.py` - This will ensure that the tests within the directory are
+  discoverable by `pytest`.
+
+Other files could be added as needed, including items such as utility
+functions. However, it is recommended to keep the tests as small in scope
+as possible. These tests should be a lightweight, sanity check that the
+service and collection pairing is valid, not a rigorous confirmation of the
+validity of the output. Bear in mind that tests will have to be run against
+_every_ collection the service is associated with.
+
+For an example test directory, see `tests/hybig`:
+
+* `tests/hybig/requirements.txt` - Python packages needed for the test suite.
+* `tests/hybig/test_hybig.py` - A single test and supporting utility function.
+  This test will be run against every collection associated with that service.
+
+Once a test directory has been created, the GitHub workflow that runs every
+night will need to be aware of it. To enable the tests, update the mappings in
+`bin/get_service_test_file.py` to include the UMM-S concept ID and the name of
+the new test directory. The UMM-S concept ID is used as it is immutable. It is
+possible to also configure tests only for either UAT or production by only
+including information for the test file in the appropriate mapping.
+
+### Managing dependencies:
+
+There is a file containing the common dependencies that all test suites will
+use, `tests/common_requirements.txt`. Each `tests/<service>/requirements.txt`
+should include those dependencies by using the following line:
+
+```
+-r ../common_requirements.txt
+```
+
 ## CI/CD workflows:
 
 These are found in the `.github/workflows` directory:
